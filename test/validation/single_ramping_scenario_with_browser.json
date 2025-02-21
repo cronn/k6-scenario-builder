@@ -1,0 +1,20 @@
+{
+  "testBrowserScenario": {
+    "exec": "testBrowserScenario",
+    "executor": "ramping-vus",
+    "gracefulRampDown": "300s",
+    "gracefulStop": "300s",
+    "options": {
+      "browser": {
+        "type": "chromium",
+      },
+    },
+    "stages": [
+      {
+        "duration": "30s",
+        "target": 1,
+      },
+    ],
+    "startVUs": 1,
+  },
+}

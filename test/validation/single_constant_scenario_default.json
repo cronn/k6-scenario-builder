@@ -1,0 +1,9 @@
+{
+  "testScenario": {
+    "duration": "30s",
+    "exec": "testScenario",
+    "executor": "constant-vus",
+    "gracefulStop": "120s",
+    "vus": 1,
+  },
+}

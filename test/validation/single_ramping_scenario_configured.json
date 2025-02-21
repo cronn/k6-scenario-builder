@@ -1,0 +1,27 @@
+{
+  "testScenario": {
+    "env": {
+      "myOption": "value",
+    },
+    "exec": "testScenario",
+    "executor": "ramping-vus",
+    "gracefulRampDown": "300s",
+    "gracefulStop": "300s",
+    "stages": [
+      {
+        "duration": "3m",
+        "target": 3,
+      },
+      {
+        "duration": "2h",
+        "target": 4,
+      },
+      {
+        "duration": "10s",
+        "target": 23,
+      },
+    ],
+    "startTime": "2m",
+    "startVUs": 3,
+  },
+}

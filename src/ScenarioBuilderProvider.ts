@@ -1,0 +1,32 @@
+import { ScenarioExecutable } from "./ScenarioExecutable";
+import { ConstantVUsScenarioBuilder } from "./scenarioBuilder/ConstantVUsScenarioBuilder";
+import { ConstantArrivalRateBuilder } from "./scenarioBuilder/ConstantArrivalRateBuilder";
+import { RampingVUsScenarioBuilder } from "./scenarioBuilder/RampingVUsScenarioBuilder";
+
+export const ScenarioBuilderProvider = {
+  rampingScenario,
+  constantScenario,
+  constantArrivalRateScenario,
+};
+
+function rampingScenario(
+  scenarioInfo: ScenarioExecutable,
+  startVus: number,
+  startDelay?: string,
+): RampingVUsScenarioBuilder {
+  return new RampingVUsScenarioBuilder(scenarioInfo, startVus, startDelay);
+}
+
+function constantScenario(
+  scenarioInfo: ScenarioExecutable,
+  startDelay?: string,
+): ConstantVUsScenarioBuilder {
+  return new ConstantVUsScenarioBuilder(scenarioInfo, startDelay);
+}
+
+function constantArrivalRateScenario(
+  scenarioInfo: ScenarioExecutable,
+  startDelay?: string,
+): ConstantArrivalRateBuilder {
+  return new ConstantArrivalRateBuilder(scenarioInfo, startDelay);
+}

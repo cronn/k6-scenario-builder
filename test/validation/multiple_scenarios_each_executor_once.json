@@ -1,0 +1,36 @@
+{
+  "constantArrivalScenario": {
+    "duration": "2m",
+    "exec": "testScenario",
+    "executor": "constant-arrival-rate",
+    "gracefulStop": "120s",
+    "preAllocatedVUs": 2,
+    "rate": 1,
+    "timeUnit": "30s",
+  },
+  "constantScenario": {
+    "duration": "2m",
+    "exec": "testScenario",
+    "executor": "constant-vus",
+    "gracefulStop": "120s",
+    "vus": 2,
+  },
+  "testBrowserScenario": {
+    "exec": "testBrowserScenario",
+    "executor": "ramping-vus",
+    "gracefulRampDown": "300s",
+    "gracefulStop": "300s",
+    "options": {
+      "browser": {
+        "type": "chromium",
+      },
+    },
+    "stages": [
+      {
+        "duration": "2m",
+        "target": 2,
+      },
+    ],
+    "startVUs": 1,
+  },
+}

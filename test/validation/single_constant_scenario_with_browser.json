@@ -1,0 +1,14 @@
+{
+  "testBrowserScenario": {
+    "duration": "30s",
+    "exec": "testBrowserScenario",
+    "executor": "constant-vus",
+    "gracefulStop": "120s",
+    "options": {
+      "browser": {
+        "type": "chromium",
+      },
+    },
+    "vus": 1,
+  },
+}
