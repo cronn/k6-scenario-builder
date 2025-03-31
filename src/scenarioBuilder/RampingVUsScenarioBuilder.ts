@@ -1,6 +1,6 @@
-import { RampingVUsScenario, Stage } from "k6/options";
+import type { RampingVUsScenario, Stage } from "k6/options";
+import type { ScenarioExecutable } from "../ScenarioExecutable";
 import { AbstractScenarioBuilder } from "./AbstractScenarioBuilder";
-import { ScenarioExecutable } from "../ScenarioExecutable";
 
 const DEFAULT_SCENARIO: RampingVUsScenario = {
   exec: undefined,
@@ -34,7 +34,7 @@ export class RampingVUsScenarioBuilder extends AbstractScenarioBuilder<RampingVU
     this.addBrowserIfNeeded();
   }
 
-  withStages(stages: Stage[]) {
+  withStages(stages: Stage[]): this {
     for (const stage of stages) {
       this.withStage(stage.duration, stage.target);
     }

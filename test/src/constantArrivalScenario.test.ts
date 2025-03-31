@@ -1,12 +1,12 @@
 import { describe, expect, test } from "vitest";
 
+import { ScenarioBuilderProvider } from "../../src/ScenarioBuilderProvider";
+import { ScriptBuilder } from "../../src/ScriptBuilder";
 import {
   browserScenarioExecutable,
   scenarioExecutable,
   timeFormatErrorMessage,
 } from "./fixtures";
-import { ScriptBuilder } from "../../src/ScriptBuilder";
-import { ScenarioBuilderProvider } from "../../src/ScenarioBuilderProvider";
 
 const VALIDATION_BASE_PATH = "../validation/single_constant_arrival_scenario";
 

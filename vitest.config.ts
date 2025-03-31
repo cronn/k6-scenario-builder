@@ -12,6 +12,6 @@ export default defineConfig({
       reporter: ["text-summary", "html"],
       include: ["src/**/*"],
     },
-    setupFiles: ["vitest-setup.ts"]
+    setupFiles: ["vitest-setup.ts"],
   },
 });

@@ -1,8 +1,8 @@
 import { describe, expect, test } from "vitest";
 
-import { browserScenarioExecutable, scenarioExecutable } from "./fixtures";
-import { ScriptBuilder } from "../../src/ScriptBuilder";
 import { ScenarioBuilderProvider } from "../../src/ScenarioBuilderProvider";
+import { ScriptBuilder } from "../../src/ScriptBuilder";
+import { browserScenarioExecutable, scenarioExecutable } from "./fixtures";
 
 const VALIDATION_BASE_PATH = "../validation/multiple_scenarios";
 

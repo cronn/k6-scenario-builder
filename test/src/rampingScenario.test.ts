@@ -1,6 +1,6 @@
 import { describe, expect, test } from "vitest";
-import { ScriptBuilder } from "../../src/ScriptBuilder";
 import { ScenarioBuilderProvider } from "../../src/ScenarioBuilderProvider";
+import { ScriptBuilder } from "../../src/ScriptBuilder";
 import {
   browserScenarioExecutable,
   scenarioExecutable,

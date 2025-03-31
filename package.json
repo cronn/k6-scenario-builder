@@ -2,9 +2,7 @@
   "name": "@cronn/k6-scenario-builder",
   "version": "0.1.0",
   "description": "Create k6 scenarios using a builder",
-  "keywords": [
-    "k6"
-  ],
+  "keywords": ["k6"],
   "bugs": {
     "url": "https://github.com/cronn/k6-scenario-builder/issues"
   },
@@ -20,9 +18,7 @@
     "pnpm": ">=10"
   },
   "pnpm": {
-    "ignoredBuiltDependencies": [
-      "esbuild"
-    ]
+    "ignoredBuiltDependencies": ["esbuild"]
   },
   "scripts": {
     "check": "biome check .",
@@ -40,19 +36,17 @@
   "exports": {
     "./package.json": "./package.json"
   },
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "@changesets/cli": "2.28.1",
     "@cronn/vitest-file-snapshots": "0.3.1",
     "@types/k6": "^0.57.1",
     "@types/node": "22.13.10",
-    "@vitest/coverage-istanbul": "3.0.9",
-    "@vitest/expect": "3.0.9",
+    "@vitest/coverage-istanbul": "3.1.1",
+    "@vitest/expect": "3.1.1",
     "tsup": "8.4.0",
     "typescript": "5.8.2",
-    "vitest": "^3"
+    "vitest": "^3.0.9"
   }
 }

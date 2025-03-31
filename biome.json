@@ -7,7 +7,7 @@
   },
   "files": {
     "ignoreUnknown": false,
-    "ignore": ["data/test", "dist"]
+    "ignore": ["data/test", "dist", "test/validation"]
   },
   "formatter": {
     "enabled": true,

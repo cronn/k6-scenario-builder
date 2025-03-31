@@ -1,6 +1,6 @@
-import { ScenarioExecutable } from "./ScenarioExecutable";
-import { ConstantVUsScenarioBuilder } from "./scenarioBuilder/ConstantVUsScenarioBuilder";
+import type { ScenarioExecutable } from "./ScenarioExecutable";
 import { ConstantArrivalRateBuilder } from "./scenarioBuilder/ConstantArrivalRateBuilder";
+import { ConstantVUsScenarioBuilder } from "./scenarioBuilder/ConstantVUsScenarioBuilder";
 import { RampingVUsScenarioBuilder } from "./scenarioBuilder/RampingVUsScenarioBuilder";
 
 export const ScenarioBuilderProvider = {

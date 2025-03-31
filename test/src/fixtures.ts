@@ -1,4 +1,4 @@
-import { ScenarioExecutable } from "../../src/ScenarioExecutable";
+import type { ScenarioExecutable } from "../../src/ScenarioExecutable";
 
 export const scenarioExecutable: ScenarioExecutable = {
   exec: "testScenario",

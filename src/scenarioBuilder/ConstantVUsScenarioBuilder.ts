@@ -1,6 +1,6 @@
-import { ConstantVUsScenario } from "k6/options";
+import type { ConstantVUsScenario } from "k6/options";
+import type { ScenarioExecutable } from "../ScenarioExecutable";
 import { AbstractScenarioBuilder } from "./AbstractScenarioBuilder";
-import { ScenarioExecutable } from "../ScenarioExecutable";
 
 const DEFAULT_SCENARIO: ConstantVUsScenario = {
   exec: undefined,
@@ -33,7 +33,7 @@ export class ConstantVUsScenarioBuilder extends AbstractScenarioBuilder<Constant
     return this;
   }
 
-  withShortConstantScenario() {
+  withShortConstantScenario(): this {
     this.currentScenario.duration = "3s";
     return this;
   }

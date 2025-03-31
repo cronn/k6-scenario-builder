@@ -1,6 +1,6 @@
-import { ConstantArrivalRateScenario } from "k6/options";
+import type { ConstantArrivalRateScenario } from "k6/options";
+import type { ScenarioExecutable } from "../ScenarioExecutable";
 import { AbstractScenarioBuilder } from "./AbstractScenarioBuilder";
-import { ScenarioExecutable } from "../ScenarioExecutable";
 
 const DEFAULT_SCENARIO: ConstantArrivalRateScenario = {
   exec: undefined,
@@ -41,7 +41,7 @@ export class ConstantArrivalRateBuilder extends AbstractScenarioBuilder<Constant
     return this;
   }
 
-  withPreAllocatedVus(preAllocatedVus: number) {
+  withPreAllocatedVus(preAllocatedVus: number): this {
     this.currentScenario.preAllocatedVUs = preAllocatedVus;
     return this;
   }

@@ -1,5 +1,5 @@
-import { BaseScenario, Scenario } from "k6/options";
-import { ScenarioExecutable } from "../ScenarioExecutable";
+import type { BaseScenario, Scenario } from "k6/options";
+import type { ScenarioExecutable } from "../ScenarioExecutable";
 
 export abstract class AbstractScenarioBuilder<T extends BaseScenario> {
   protected readonly scenarioExecutable: ScenarioExecutable;
@@ -9,7 +9,7 @@ export abstract class AbstractScenarioBuilder<T extends BaseScenario> {
     this.scenarioExecutable = scenarioExecutable;
   }
 
-  protected addBrowserIfNeeded() {
+  protected addBrowserIfNeeded(): void {
     if (this.scenarioExecutable.browser) {
       this.currentScenario.options = {
         browser: {
@@ -19,14 +19,14 @@ export abstract class AbstractScenarioBuilder<T extends BaseScenario> {
     }
   }
 
-  protected addStartDelay(startDelay?: string) {
-    if (startDelay != undefined) {
+  protected addStartDelay(startDelay?: string): void {
+    if (startDelay !== undefined) {
       this.checkTimeStringFormat(startDelay);
       this.currentScenario.startTime = startDelay;
     }
   }
 
-  protected checkTimeStringFormat(timeString: string) {
+  protected checkTimeStringFormat(timeString: string): void {
     if (!/^(\d+)(s|m|h)$/.test(timeString)) {
       throw new Error(
         "Invalid time string format. Use 's' for seconds, 'm' for minutes, and 'h' for hours.",

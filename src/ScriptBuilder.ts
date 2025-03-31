@@ -1,13 +1,13 @@
-import { Scenario } from "k6/options";
-import { ScenarioExecutable } from "./ScenarioExecutable";
+import type { Scenario } from "k6/options";
 import { ScenarioBuilderProvider } from "./ScenarioBuilderProvider";
+import type { ScenarioExecutable } from "./ScenarioExecutable";
 
 export class ScriptBuilder {
   private readonly currentScript: Record<string, Scenario> = {};
   private callback: ((scenario: Scenario) => void) | undefined;
 
   addScenario(scenario: Scenario, name?: string): this {
-    if (scenario.exec == undefined) {
+    if (scenario.exec === undefined) {
       throw new Error("No executable function for scenario defined");
     }
     this.currentScript[name ?? scenario.exec] = scenario;
@@ -45,7 +45,7 @@ export class ScriptBuilder {
     );
   }
 
-  withCallbackFunction(callback: (scenario: Scenario) => void) {
+  withCallbackFunction(callback: (scenario: Scenario) => void): this {
     this.callback = callback;
     return this;
   }

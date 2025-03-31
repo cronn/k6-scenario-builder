@@ -1,20 +1,20 @@
 import { expect, test } from "vitest";
 
-import { scenarioExecutable } from "./fixtures";
-import { ScriptBuilder } from "../../src/ScriptBuilder";
-import { Scenario } from "k6/options";
+import type { Scenario } from "k6/options";
 import { ScenarioBuilderProvider } from "../../src/ScenarioBuilderProvider";
+import { ScriptBuilder } from "../../src/ScriptBuilder";
+import { scenarioExecutable } from "./fixtures";
 
 test("callback function", async () => {
-  let gracefulStop = "";
-  const callback = (scenario: Scenario) => {
-    gracefulStop = scenario.gracefulStop!;
+  let executor = "";
+  const callback = (scenario: Scenario): void => {
+    executor = scenario.executor;
   };
   new ScriptBuilder()
     .withCallbackFunction(callback)
     .defaultScript([scenarioExecutable])
     .buildScript();
-  expect(gracefulStop).toEqual("120s");
+  expect(executor).toEqual("constant-vus");
 });
 
 test("renew callback function", async () => {
@@ -22,10 +22,10 @@ test("renew callback function", async () => {
   const firstCallBackMessage = "first callback says hi";
   let message2 = "";
   const secondCallBackMessage = "second callback says bye";
-  const firstCallback = (scenario: Scenario) => {
+  const firstCallback = (scenario: Scenario): void => {
     message1 = firstCallBackMessage;
   };
-  const secondCallback = (scenario: Scenario) => {
+  const secondCallback = (scenario: Scenario): void => {
     message2 = secondCallBackMessage;
   };
   new ScriptBuilder()
