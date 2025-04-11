@@ -1,1 +1,3 @@
-import "@cronn/vitest-file-snapshots/extend-expect";
+import { registerValidationFileMatcher } from "@cronn/vitest-file-snapshots/matcher";
+
+registerValidationFileMatcher();

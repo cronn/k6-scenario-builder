@@ -1,4 +1,4 @@
-import { describe, expect, test } from "vitest";
+import { expect, test } from "vitest";
 
 import { ScenarioBuilderProvider } from "../../src/ScenarioBuilderProvider";
 import { ScriptBuilder } from "../../src/ScriptBuilder";
@@ -8,87 +8,76 @@ import {
   timeFormatErrorMessage,
 } from "./fixtures";
 
-const VALIDATION_BASE_PATH = "../validation/single_constant_arrival_scenario";
+test("default scenario", () => {
+  const script = new ScriptBuilder()
+    .addScenario(
+      ScenarioBuilderProvider.constantArrivalRateScenario(
+        scenarioExecutable,
+      ).buildScenario(),
+    )
+    .buildScript();
+  expect(script).toMatchValidationFile();
+});
 
-describe("single constant arrival scenario", () => {
-  test("default", async () => {
-    const script = new ScriptBuilder()
-      .addScenario(
-        ScenarioBuilderProvider.constantArrivalRateScenario(
-          scenarioExecutable,
-        ).buildScenario(),
+test("scenario with browser", () => {
+  const script = new ScriptBuilder()
+    .addScenario(
+      ScenarioBuilderProvider.constantArrivalRateScenario(
+        browserScenarioExecutable,
+      ).buildScenario(),
+    )
+    .buildScript();
+  expect(script).toMatchValidationFile();
+});
+
+test("configured scenario", () => {
+  const script = new ScriptBuilder()
+    .addScenario(
+      ScenarioBuilderProvider.constantArrivalRateScenario(
+        scenarioExecutable,
+        "1h",
       )
-      .buildScript();
-    await expect(script).toMatchFileSnapshot(
-      `${VALIDATION_BASE_PATH}_default.json`,
-    );
-  });
+        .withTimeUnit("30s")
+        .withRate(4)
+        .withDuration("2h")
+        .withPreAllocatedVus(1)
+        .addEnvOption({ myOption: "value" })
+        .addEnvOption({ anotherOption: "anotherValue" })
+        .buildScenario(),
+    )
+    .buildScript();
+  expect(script).toMatchValidationFile();
+});
 
-  test("with browser", async () => {
-    const script = new ScriptBuilder()
+test("wrong time format", () => {
+  expect(() =>
+    new ScriptBuilder()
       .addScenario(
         ScenarioBuilderProvider.constantArrivalRateScenario(
           browserScenarioExecutable,
+          "5min",
         ).buildScenario(),
       )
-      .buildScript();
-    await expect(script).toMatchFileSnapshot(
-      `${VALIDATION_BASE_PATH}_with_browser.json`,
-    );
-  });
-
-  test("configured", async () => {
-    const script = new ScriptBuilder()
+      .buildScript(),
+  ).toThrowError(timeFormatErrorMessage);
+  expect(() =>
+    new ScriptBuilder()
       .addScenario(
-        ScenarioBuilderProvider.constantArrivalRateScenario(
-          scenarioExecutable,
-          "1h",
-        )
-          .withTimeUnit("30s")
-          .withRate(4)
-          .withDuration("2h")
-          .withPreAllocatedVus(1)
-          .addEnvOption({ myOption: "value" })
+        ScenarioBuilderProvider.constantArrivalRateScenario(scenarioExecutable)
+          .withTimeUnit("3min")
           .buildScenario(),
       )
-      .buildScript();
-    await expect(script).toMatchFileSnapshot(
-      `${VALIDATION_BASE_PATH}_configured.json`,
-    );
-  });
-
-  test("wrong format", async () => {
-    expect(() =>
-      new ScriptBuilder()
-        .addScenario(
-          ScenarioBuilderProvider.constantArrivalRateScenario(
-            browserScenarioExecutable,
-            "5min",
-          ).buildScenario(),
+      .buildScript(),
+  ).toThrowError(timeFormatErrorMessage);
+  expect(() =>
+    new ScriptBuilder()
+      .addScenario(
+        ScenarioBuilderProvider.constantArrivalRateScenario(
+          browserScenarioExecutable,
         )
-        .buildScript(),
-    ).toThrowError(timeFormatErrorMessage);
-    expect(() =>
-      new ScriptBuilder()
-        .addScenario(
-          ScenarioBuilderProvider.constantArrivalRateScenario(
-            scenarioExecutable,
-          )
-            .withTimeUnit("3min")
-            .buildScenario(),
-        )
-        .buildScript(),
-    ).toThrowError(timeFormatErrorMessage);
-    expect(() =>
-      new ScriptBuilder()
-        .addScenario(
-          ScenarioBuilderProvider.constantArrivalRateScenario(
-            browserScenarioExecutable,
-          )
-            .withDuration("3hours")
-            .buildScenario(),
-        )
-        .buildScript(),
-    ).toThrowError(timeFormatErrorMessage);
-  });
+          .withDuration("3hours")
+          .buildScenario(),
+      )
+      .buildScript(),
+  ).toThrowError(timeFormatErrorMessage);
 });

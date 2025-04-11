@@ -2,14 +2,14 @@
   "testScenario": {
     "exec": "testScenario",
     "executor": "ramping-vus",
-    "gracefulRampDown": "300s",
-    "gracefulStop": "300s",
+    "startVUs": 1,
     "stages": [
       {
         "duration": "30s",
-        "target": 1,
-      },
+        "target": 1
+      }
     ],
-    "startVUs": 1,
-  },
+    "gracefulRampDown": "300s",
+    "gracefulStop": "300s"
+  }
 }

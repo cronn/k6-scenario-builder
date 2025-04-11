@@ -1,13 +1,13 @@
 {
   "testScenario": {
-    "duration": "2m",
-    "env": {
-      "myOption": "value",
-    },
     "exec": "testScenario",
     "executor": "constant-vus",
+    "vus": 5,
+    "duration": "2m",
     "gracefulStop": "120s",
     "startTime": "2m",
-    "vus": 5,
-  },
+    "env": {
+      "myOption": "value"
+    }
+  }
 }

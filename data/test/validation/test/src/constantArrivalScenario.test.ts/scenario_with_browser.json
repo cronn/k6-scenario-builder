@@ -1,16 +1,16 @@
 {
   "testBrowserScenario": {
-    "duration": "30s",
     "exec": "testBrowserScenario",
     "executor": "constant-arrival-rate",
+    "rate": 1,
+    "timeUnit": "30s",
+    "duration": "30s",
+    "preAllocatedVUs": 1,
     "gracefulStop": "120s",
     "options": {
       "browser": {
-        "type": "chromium",
-      },
-    },
-    "preAllocatedVUs": 1,
-    "rate": 1,
-    "timeUnit": "30s",
-  },
+        "type": "chromium"
+      }
+    }
+  }
 }

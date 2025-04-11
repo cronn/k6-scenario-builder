@@ -1,0 +1,16 @@
+{
+  "testScenario": {
+    "exec": "testScenario",
+    "executor": "constant-arrival-rate",
+    "rate": 4,
+    "timeUnit": "30s",
+    "duration": "2h",
+    "preAllocatedVUs": 1,
+    "gracefulStop": "120s",
+    "startTime": "1h",
+    "env": {
+      "myOption": "value",
+      "anotherOption": "anotherValue"
+    }
+  }
+}
