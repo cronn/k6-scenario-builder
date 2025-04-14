@@ -1,8 +1,24 @@
 # cronn k6 Scenario Builder
 
-This library provides a builder for k6 scenario configurations. How scenarios in k6 are defined you can find on their [website](https://grafana.com/docs/k6/latest/using-k6/scenarios/).
+This library provides a builder for k6 scenario configurations. How scenarios in k6 are defined is explained on their [website](https://grafana.com/docs/k6/latest/using-k6/scenarios/).
 
-## Usage
+## Motivation
+
+If your k6 setup grows bigger and you want to run multiple scenarios the scenario configuration can become very long and tedious.
+In particular, making changes to adjust scenarios for test runs is tedious and can easily lead to errors in the configuration, costing time.
+This library tries to make the configuration and customisation of k6 scenarios easier and less error-prone.
+
+## Getting Started
+
+### Adding the library to your project
+
+npm install -D @cronn/k6-scenario-builder
+
+yarn add -D @cronn/k6-scenario-builder
+
+pnpm add -D @cronn/k6-scenario-builder
+
+### Create a scenario configuration
 
 For creating a new scenario configuration, consisting of one or more scenarios start with
 
