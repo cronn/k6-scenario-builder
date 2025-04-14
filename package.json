@@ -26,7 +26,7 @@
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
     "compile": "tsc",
-    "build": "tsup",
+    "build": "tsup src/index.ts",
     "ci": "biome ci . && pnpm run compile & pnpm run test:coverage",
     "prepublishOnly": "pnpm run ci",
     "version": "pnpm changeset version && pnpm biome format --write package.json",
@@ -34,8 +34,13 @@
   },
   "type": "module",
   "exports": {
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
   },
+  "types": "./dist/index.d.ts",
   "files": ["dist"],
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
