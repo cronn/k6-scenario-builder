@@ -12,7 +12,7 @@ export class ScenarioSetBuilder {
     }
     this.currentScript[name ?? scenario.exec] = scenario;
     if (this.callback) {
-      this.callback(structuredClone(scenario));
+      this.callback(scenario);
     }
     return this;
   }

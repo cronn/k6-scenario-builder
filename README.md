@@ -72,7 +72,7 @@ as an option to your scenario and k6 will use a browser when executing.
 ### Callback
 
 The `ScenarioSetBuilder` provides `withCallback` which allows you to set a function which is executed every time a scenario is added.
-The function gets passed a copy of the new scenario and can be used to modify values outside the builder which depend on the to be executed scenarios.
+The function gets passed a reference to the new scenario object, so you can do some final adjustments if necessary and you can keep the state of your test framework in sync with the created scenarios.
 When calling `withCallback` multiple times for one ScenarioSetBuilder object the callback function will be overridden and the latest function will be used.
 
 ### Default scenarios
