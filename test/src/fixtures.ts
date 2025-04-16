@@ -1,11 +1,21 @@
-import type { ScenarioExecutable } from "../../src/ScenarioExecutable";
+import type { ScenarioExecutable } from "../../src";
+
+function testScenario(): void {
+  // biome-ignore lint/suspicious/noConsole: dummy test function
+  console.log("testScenario");
+}
+
+function testBrowserScenario(): void {
+  // biome-ignore lint/suspicious/noConsole: dummy test function
+  console.log("testBrowserScenario");
+}
 
 export const scenarioExecutable: ScenarioExecutable = {
-  exec: "testScenario",
+  exec: testScenario,
   browser: false,
 };
 export const browserScenarioExecutable: ScenarioExecutable = {
-  exec: "testBrowserScenario",
+  exec: testBrowserScenario,
   browser: true,
 };
 

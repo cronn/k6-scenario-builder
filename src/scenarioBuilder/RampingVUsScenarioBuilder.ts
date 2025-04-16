@@ -28,7 +28,7 @@ export class RampingVUsScenarioBuilder extends AbstractScenarioBuilder<RampingVU
     startDelay?: string,
   ) {
     super(scenarioExecutable);
-    this.currentScenario.exec = scenarioExecutable.exec;
+    this.currentScenario.exec = scenarioExecutable.exec.name;
     this.currentScenario.startVUs = startVus;
     this.addStartDelay(startDelay);
     this.addBrowserIfNeeded();
