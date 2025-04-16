@@ -1,5 +1,5 @@
 import { expect, test } from "vitest";
-import { ScriptBuilder } from "../../src/ScriptBuilder";
+import { ScriptBuilder } from "../../src";
 
 test("manual scenario", () => {
   const script = new ScriptBuilder()

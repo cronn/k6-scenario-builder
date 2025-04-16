@@ -1,8 +1,8 @@
 import { expect, test } from "vitest";
 
 import type { Scenario } from "k6/options";
-import { ScenarioBuilderProvider } from "../../src/ScenarioBuilderProvider";
-import { ScriptBuilder } from "../../src/ScriptBuilder";
+import { ScenarioBuilderProvider } from "../../src";
+import { ScriptBuilder } from "../../src";
 import { scenarioExecutable } from "./fixtures";
 
 test("callback function", async () => {
