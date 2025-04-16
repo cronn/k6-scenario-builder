@@ -30,7 +30,7 @@ For creating a new set of scenarios, consisting of one or more scenarios create 
 
 To create a single scenario which can be passed to `addScenario` use the builder for your desired executor type. These builders can be accessed by the `ScenarioBuilderProvider`. Currently, only the `ConstantVUsScenario`, `RampingVUsScenario` and `ConstantArrivalRateScenario` are implemented!
 
-To create a scenario with one of these builders you need to describe your scenario as a `ScenarioExecutable`, which currently only contains a reference to function which shall be executed by the scenario and a toggle whether a browser is necessary or not.
+To create a scenario with one of these builders you need to describe your scenario as a `ScenarioExecutable`, which currently only contains a reference to function which shall be executed by the scenario and a toggle whether a browser is necessary or not (optional, default is `false`).
 
 Example:
 
