@@ -67,9 +67,9 @@ as an option to your scenario and k6 will use a browser when executing.
 
 ### Callback
 
-The `ScriptBuilder` provides `withCallbackFunction` which allows you to set a function which is executed every time a scenario is added.
+The `ScriptBuilder` provides `withCallback` which allows you to set a function which is executed every time a scenario is added.
 The function gets passed a copy of the new scenario and can be used to modify values outside the builder which depend on the to be executed scenarios.
-When calling `withCallbackFunction` multiple times for one ScriptBuilder object the callback function will be overridden and the latest function will be used.
+When calling `withCallback` multiple times for one ScriptBuilder object the callback function will be overridden and the latest function will be used.
 
 ### Default scenarios
 

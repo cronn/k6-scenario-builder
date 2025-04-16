@@ -27,7 +27,7 @@ export abstract class AbstractScenarioBuilder<T extends BaseScenario> {
   }
 
   protected checkTimeStringFormat(timeString: string): void {
-    if (!/^(\d+)(s|m|h)$/.test(timeString)) {
+    if (!/^(\d+)([smh])$/.test(timeString)) {
       throw new Error(
         "Invalid time string format. Use 's' for seconds, 'm' for minutes, and 'h' for hours.",
       );

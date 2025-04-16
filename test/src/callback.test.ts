@@ -11,7 +11,7 @@ test("callback function", async () => {
     executor = scenario.executor;
   };
   new ScriptBuilder()
-    .withCallbackFunction(callback)
+    .withCallback(callback)
     .defaultScript([scenarioExecutable])
     .buildScript();
   expect(executor).toEqual("constant-vus");
@@ -29,13 +29,13 @@ test("renew callback function", async () => {
     message2 = secondCallBackMessage;
   };
   new ScriptBuilder()
-    .withCallbackFunction(firstCallback)
+    .withCallback(firstCallback)
     .addScenario(
       ScenarioBuilderProvider.constantScenario(
         scenarioExecutable,
       ).buildScenario(),
     )
-    .withCallbackFunction(secondCallback)
+    .withCallback(secondCallback)
     .addScenario(
       ScenarioBuilderProvider.rampingScenario(
         scenarioExecutable,

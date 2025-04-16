@@ -45,7 +45,7 @@ export class ScriptBuilder {
     );
   }
 
-  withCallbackFunction(callback: (scenario: Scenario) => void): this {
+  withCallback(callback: (scenario: Scenario) => void): this {
     this.callback = callback;
     return this;
   }
