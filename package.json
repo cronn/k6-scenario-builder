@@ -36,22 +36,28 @@
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "import": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      },
+      "default": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      }
     }
   },
   "types": "./dist/index.d.ts",
-  "files": ["dist"],
+  "files": ["README.md", "dist"],
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "@changesets/cli": "2.28.1",
     "@cronn/vitest-file-snapshots": "0.4.0",
-    "@types/k6": "^0.57.1",
+    "@types/k6": "0.57.1",
     "@types/node": "22.13.10",
     "@vitest/coverage-istanbul": "3.1.1",
     "@vitest/expect": "3.1.1",
     "tsup": "8.4.0",
     "typescript": "5.8.2",
-    "vitest": "^3.0.9"
+    "vitest": "3.0.9"
   }
 }
