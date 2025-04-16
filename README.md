@@ -1,10 +1,10 @@
-# cronn k6 Scenario Builder
+# k6 Scenario Builder
 
-This library provides a builder for k6 scenario configurations. How scenarios in k6 are defined is explained on their [website](https://grafana.com/docs/k6/latest/using-k6/scenarios/).
+This library provides a builder for k6 scenario configurations. How scenarios in k6 are defined is explained in their [documentation](https://grafana.com/docs/k6/latest/using-k6/scenarios/).
 
 ## Motivation
 
-If your k6 setup grows bigger and you want to run multiple scenarios the scenario configuration can become very long and tedious.
+If your k6 setup grows bigger, and you want to run multiple scenarios the scenario configuration can become very long and tedious.
 In particular, making changes to adjust scenarios for test runs is tedious and can easily lead to errors in the configuration, costing time.
 This library tries to make the configuration and customisation of k6 scenarios easier and less error-prone.
 
@@ -12,21 +12,25 @@ This library tries to make the configuration and customisation of k6 scenarios e
 
 ### Adding the library to your project
 
+```shell
 npm install -D @cronn/k6-scenario-builder
+```
 
+```shell
 yarn add -D @cronn/k6-scenario-builder
+```
 
+```shell
 pnpm add -D @cronn/k6-scenario-builder
+```
 
 ### Create a scenario configuration
 
-For creating a new scenario configuration, consisting of one or more scenarios start with
+For creating a new set of scenarios, consisting of one or more scenarios create a new instance of the `ScriptBuilder` class. Individual scenarios can be added with `addScenario`, `addShortScenario` or `addDefaultScenario` to the current scenario list. A full set of scenarios can be added using `defaultScript` or `shortDefaultScript`.
 
-> new ScriptBuilder()
+To create a single scenario which can be passed to `addScenario` use the builder for your desired executor type. These builders can be accessed by the `ScenarioBuilderProvider`. Currently, only the `ConstantVUsScenario`, `RampingVUsScenario` and `ConstantArrivalRateScenario` are implemented!
 
-This class provides a method `addScenario` to add a scenario to the current script/configuration as well as methods for default configurations.
-To create a single scenario which can be passed to `addScenario` use the ScenarioBuilder for your desired executor type. These builders can be accessed by the `ScenarioBuilderProvider`.
-To create a scenario with one of these builders you need to describe your scenario as a `ScenarioExecutable`, meaning you specify the function this scenario should execute and if it needs a browser.
+To create a scenario with one of these builders you need to describe your scenario as a `ScenarioExecutable`, which currently only contains the title of the function which shall be executed by the scenario and a toggle whether a browser is necessary or not.
 
 Example:
 
@@ -46,12 +50,12 @@ new ScriptBuilder()
   .buildScript();
 ```
 
-This builder call would create a 2-minute scenario which executes `myScenarioFunction` with constant 5 VUs.
-To make this scenario executable for k6, make sure you have the function `myScenarioFunction` defined in the file which is run by k6.
+This builder call creates a 2-minute scenario which executes `myScenarioFunction` with constant 5 VUs.
+To make this scenario executable for k6, make sure you have the function `myScenarioFunction` defined and exported in the file which is run by k6.
 
 If you have multiple scenarios you want to execute, an approach is to create a list of `ScenarioExecutable`s from which you can choose your desired scenario when calling a ScenarioBuilder.
 
-### Browser-Option
+### Browser based scenarios
 
 If your `ScenarioExecutable` contains `browser: true` the ScenarioBuilder will add
 
@@ -63,7 +67,7 @@ as an option to your scenario and k6 will use a browser when executing.
 
 ### Callback
 
-The `ScriptBuilder` provides `withCallbackFunction` which allows you to set a function which is executed every time a scenario is added to the configuration/script.
+The `ScriptBuilder` provides `withCallbackFunction` which allows you to set a function which is executed every time a scenario is added.
 The function gets passed a copy of the new scenario and can be used to modify values outside the builder which depend on the to be executed scenarios.
 When calling `withCallbackFunction` multiple times for one ScriptBuilder object the callback function will be overridden and the latest function will be used.
 
