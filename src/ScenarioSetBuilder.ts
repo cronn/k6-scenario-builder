@@ -2,7 +2,7 @@ import type { Scenario } from "k6/options";
 import { ScenarioBuilderProvider } from "./ScenarioBuilderProvider";
 import type { ScenarioExecutable } from "./ScenarioExecutable";
 
-export class ScriptBuilder {
+export class ScenarioSetBuilder {
   private readonly currentScript: Record<string, Scenario> = {};
   private callback: ((scenario: Scenario) => void) | undefined;
 

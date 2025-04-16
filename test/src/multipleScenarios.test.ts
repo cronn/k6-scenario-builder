@@ -1,35 +1,35 @@
 import { expect, test } from "vitest";
 
 import { ScenarioBuilderProvider } from "../../src";
-import { ScriptBuilder } from "../../src";
+import { ScenarioSetBuilder } from "../../src";
 import { browserScenarioExecutable, scenarioExecutable } from "./fixtures";
 
 test("empty script", () => {
-  const script = new ScriptBuilder().buildScript();
+  const script = new ScenarioSetBuilder().buildScript();
   expect(script).toMatchValidationFile();
 });
 
 test("default empty script", () => {
-  const script = new ScriptBuilder().defaultScript([]).buildScript();
+  const script = new ScenarioSetBuilder().defaultScript([]).buildScript();
   expect(script).toMatchValidationFile();
 });
 
 test("default script browser and no browser", () => {
-  const script = new ScriptBuilder()
+  const script = new ScenarioSetBuilder()
     .defaultScript([scenarioExecutable, browserScenarioExecutable])
     .buildScript();
   expect(script).toMatchValidationFile();
 });
 
 test("short default with two scenarios", () => {
-  const script = new ScriptBuilder()
+  const script = new ScenarioSetBuilder()
     .shortDefaultScript([scenarioExecutable, browserScenarioExecutable])
     .buildScript();
   expect(script).toMatchValidationFile();
 });
 
 test("each executor type once", () => {
-  const script = new ScriptBuilder()
+  const script = new ScenarioSetBuilder()
     .addScenario(
       ScenarioBuilderProvider.constantScenario(scenarioExecutable)
         .withDuration("2m")

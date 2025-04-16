@@ -1,7 +1,7 @@
 import { expect, test } from "vitest";
 
 import { ScenarioBuilderProvider } from "../../src";
-import { ScriptBuilder } from "../../src";
+import { ScenarioSetBuilder } from "../../src";
 import {
   browserScenarioExecutable,
   scenarioExecutable,
@@ -9,7 +9,7 @@ import {
 } from "./fixtures";
 
 test("default scenario", () => {
-  const script = new ScriptBuilder()
+  const script = new ScenarioSetBuilder()
     .addScenario(
       ScenarioBuilderProvider.constantArrivalRateScenario(
         scenarioExecutable,
@@ -20,7 +20,7 @@ test("default scenario", () => {
 });
 
 test("scenario with browser", () => {
-  const script = new ScriptBuilder()
+  const script = new ScenarioSetBuilder()
     .addScenario(
       ScenarioBuilderProvider.constantArrivalRateScenario(
         browserScenarioExecutable,
@@ -31,7 +31,7 @@ test("scenario with browser", () => {
 });
 
 test("configured scenario", () => {
-  const script = new ScriptBuilder()
+  const script = new ScenarioSetBuilder()
     .addScenario(
       ScenarioBuilderProvider.constantArrivalRateScenario(
         scenarioExecutable,
@@ -51,7 +51,7 @@ test("configured scenario", () => {
 
 test("wrong time format", () => {
   expect(() =>
-    new ScriptBuilder()
+    new ScenarioSetBuilder()
       .addScenario(
         ScenarioBuilderProvider.constantArrivalRateScenario(
           browserScenarioExecutable,
@@ -61,7 +61,7 @@ test("wrong time format", () => {
       .buildScript(),
   ).toThrowError(timeFormatErrorMessage);
   expect(() =>
-    new ScriptBuilder()
+    new ScenarioSetBuilder()
       .addScenario(
         ScenarioBuilderProvider.constantArrivalRateScenario(scenarioExecutable)
           .withTimeUnit("3min")
@@ -70,7 +70,7 @@ test("wrong time format", () => {
       .buildScript(),
   ).toThrowError(timeFormatErrorMessage);
   expect(() =>
-    new ScriptBuilder()
+    new ScenarioSetBuilder()
       .addScenario(
         ScenarioBuilderProvider.constantArrivalRateScenario(
           browserScenarioExecutable,

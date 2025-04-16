@@ -1,6 +1,6 @@
 import { expect, test } from "vitest";
 import { ScenarioBuilderProvider } from "../../src";
-import { ScriptBuilder } from "../../src";
+import { ScenarioSetBuilder } from "../../src";
 import {
   browserScenarioExecutable,
   scenarioExecutable,
@@ -8,7 +8,7 @@ import {
 } from "./fixtures";
 
 test("default scenario", () => {
-  const script = new ScriptBuilder()
+  const script = new ScenarioSetBuilder()
     .addScenario(
       ScenarioBuilderProvider.constantScenario(
         scenarioExecutable,
@@ -19,7 +19,7 @@ test("default scenario", () => {
 });
 
 test("scenario with browser", () => {
-  const script = new ScriptBuilder()
+  const script = new ScenarioSetBuilder()
     .addScenario(
       ScenarioBuilderProvider.constantScenario(
         browserScenarioExecutable,
@@ -30,7 +30,7 @@ test("scenario with browser", () => {
 });
 
 test("configured scenario", () => {
-  const script = new ScriptBuilder()
+  const script = new ScenarioSetBuilder()
     .addScenario(
       ScenarioBuilderProvider.constantScenario(scenarioExecutable, "2m")
         .withVus(5)
@@ -43,7 +43,7 @@ test("configured scenario", () => {
 });
 
 test("short default scenario", () => {
-  const script = new ScriptBuilder()
+  const script = new ScenarioSetBuilder()
     .addScenario(
       ScenarioBuilderProvider.constantScenario(scenarioExecutable)
         .withShortConstantScenario()
@@ -55,7 +55,7 @@ test("short default scenario", () => {
 
 test("wrong format", () => {
   expect(() =>
-    new ScriptBuilder()
+    new ScenarioSetBuilder()
       .addScenario(
         ScenarioBuilderProvider.constantScenario(scenarioExecutable)
           .withDuration("12Stunden")

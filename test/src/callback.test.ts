@@ -2,7 +2,7 @@ import { expect, test } from "vitest";
 
 import type { Scenario } from "k6/options";
 import { ScenarioBuilderProvider } from "../../src";
-import { ScriptBuilder } from "../../src";
+import { ScenarioSetBuilder } from "../../src";
 import { scenarioExecutable } from "./fixtures";
 
 test("callback function", async () => {
@@ -10,7 +10,7 @@ test("callback function", async () => {
   const callback = (scenario: Scenario): void => {
     executor = scenario.executor;
   };
-  new ScriptBuilder()
+  new ScenarioSetBuilder()
     .withCallback(callback)
     .defaultScript([scenarioExecutable])
     .buildScript();
@@ -28,7 +28,7 @@ test("renew callback function", async () => {
   const secondCallback = (scenario: Scenario): void => {
     message2 = secondCallBackMessage;
   };
-  new ScriptBuilder()
+  new ScenarioSetBuilder()
     .withCallback(firstCallback)
     .addScenario(
       ScenarioBuilderProvider.constantScenario(

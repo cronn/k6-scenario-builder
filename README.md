@@ -26,7 +26,7 @@ pnpm add -D @cronn/k6-scenario-builder
 
 ### Create a scenario configuration
 
-For creating a new set of scenarios, consisting of one or more scenarios create a new instance of the `ScriptBuilder` class. Individual scenarios can be added with `addScenario`, `addShortScenario` or `addDefaultScenario` to the current scenario list. A full set of scenarios can be added using `defaultScript` or `shortDefaultScript`.
+For creating a new set of scenarios, consisting of one or more scenarios create a new instance of the `ScenarioSetBuilder` class. Individual scenarios can be added with `addScenario`, `addShortScenario` or `addDefaultScenario` to the current scenario list. A full set of scenarios can be added using `defaultScript` or `shortDefaultScript`.
 
 To create a single scenario which can be passed to `addScenario` use the builder for your desired executor type. These builders can be accessed by the `ScenarioBuilderProvider`. Currently, only the `ConstantVUsScenario`, `RampingVUsScenario` and `ConstantArrivalRateScenario` are implemented!
 
@@ -44,7 +44,7 @@ const scenarioExecutable: ScenarioExecutable = {
   browser: false,
 };
 
-new ScriptBuilder()
+new ScenarioSetBuilder()
   .addScenario(
     ScenarioBuilderProvider.constantScenario(scenarioExecutable)
       .withVus(5)
@@ -71,11 +71,11 @@ as an option to your scenario and k6 will use a browser when executing.
 
 ### Callback
 
-The `ScriptBuilder` provides `withCallback` which allows you to set a function which is executed every time a scenario is added.
+The `ScenarioSetBuilder` provides `withCallback` which allows you to set a function which is executed every time a scenario is added.
 The function gets passed a copy of the new scenario and can be used to modify values outside the builder which depend on the to be executed scenarios.
-When calling `withCallback` multiple times for one ScriptBuilder object the callback function will be overridden and the latest function will be used.
+When calling `withCallback` multiple times for one ScenarioSetBuilder object the callback function will be overridden and the latest function will be used.
 
 ### Default scenarios
 
 Each ScenarioBuilder has a default configuration for mandatory values which will be used if `buildScenario` is called without configuring the scenario.
-Additionally `ScriptBuilder` has functions for default scripts which accept `ScenarioExecutables` that should be executed with default values.
+Additionally `ScenarioSetBuilder` has functions for default sets which accept `ScenarioExecutables` that should be executed with default values.

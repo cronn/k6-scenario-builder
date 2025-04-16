@@ -1,6 +1,6 @@
 import { expect, test } from "vitest";
 import { ScenarioBuilderProvider } from "../../src";
-import { ScriptBuilder } from "../../src";
+import { ScenarioSetBuilder } from "../../src";
 import {
   browserScenarioExecutable,
   scenarioExecutable,
@@ -8,7 +8,7 @@ import {
 } from "./fixtures";
 
 test("default scenario", () => {
-  const script = new ScriptBuilder()
+  const script = new ScenarioSetBuilder()
     .addScenario(
       ScenarioBuilderProvider.rampingScenario(
         scenarioExecutable,
@@ -20,7 +20,7 @@ test("default scenario", () => {
 });
 
 test("scenario with browser", () => {
-  const script = new ScriptBuilder()
+  const script = new ScenarioSetBuilder()
     .addScenario(
       ScenarioBuilderProvider.rampingScenario(
         browserScenarioExecutable,
@@ -32,7 +32,7 @@ test("scenario with browser", () => {
 });
 
 test("configured scenario", () => {
-  const script = new ScriptBuilder()
+  const script = new ScenarioSetBuilder()
     .addScenario(
       ScenarioBuilderProvider.rampingScenario(scenarioExecutable, 3, "2m")
         .addEnvOption({ myOption: "value" })
@@ -49,7 +49,7 @@ test("configured scenario", () => {
 
 test("wrong format", () => {
   expect(() =>
-    new ScriptBuilder().addScenario(
+    new ScenarioSetBuilder().addScenario(
       ScenarioBuilderProvider.rampingScenario(browserScenarioExecutable, 1)
         .withStage("3min", 3)
         .buildScenario(),

@@ -1,8 +1,8 @@
 import { expect, test } from "vitest";
-import { ScriptBuilder } from "../../src";
+import { ScenarioSetBuilder } from "../../src";
 
 test("manual scenario", () => {
-  const script = new ScriptBuilder()
+  const script = new ScenarioSetBuilder()
     .addScenario({
       executor: "constant-vus",
       exec: "testScenario",
@@ -15,7 +15,7 @@ test("manual scenario", () => {
 
 test("missing exec function", () => {
   expect(() =>
-    new ScriptBuilder().addScenario({
+    new ScenarioSetBuilder().addScenario({
       executor: "constant-vus",
       vus: 1,
       duration: "1m",
