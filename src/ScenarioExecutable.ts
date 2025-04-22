@@ -1,4 +1,4 @@
 export interface ScenarioExecutable {
-  exec: (...args: unknown[]) => unknown;
+  exec: string | ((...args: unknown[]) => unknown);
   browser?: boolean;
 }

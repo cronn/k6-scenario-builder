@@ -19,7 +19,10 @@ export class ConstantArrivalRateBuilder extends AbstractScenarioBuilder<Constant
 
   constructor(scenarioExecutable: ScenarioExecutable, startDelay?: string) {
     super(scenarioExecutable);
-    this.currentScenario.exec = scenarioExecutable.exec.name;
+    this.currentScenario.exec =
+      typeof scenarioExecutable.exec === "string"
+        ? scenarioExecutable.exec
+        : scenarioExecutable.exec.name;
     this.addStartDelay(startDelay);
     this.addBrowserIfNeeded();
   }

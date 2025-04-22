@@ -11,7 +11,7 @@ function testBrowserScenario(): void {
 }
 
 export const scenarioExecutable: ScenarioExecutable = {
-  exec: testScenario,
+  exec: "testScenario",
 };
 export const browserScenarioExecutable: ScenarioExecutable = {
   exec: testBrowserScenario,
