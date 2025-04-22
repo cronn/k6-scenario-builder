@@ -10,20 +10,20 @@ test("empty script", () => {
 });
 
 test("default empty script", () => {
-  const script = new ScenarioSetBuilder().defaultScript([]).buildScript();
+  const script = new ScenarioSetBuilder().defaultScenarioSet([]).buildScript();
   expect(script).toMatchValidationFile();
 });
 
 test("default script browser and no browser", () => {
   const script = new ScenarioSetBuilder()
-    .defaultScript([scenarioExecutable, browserScenarioExecutable])
+    .defaultScenarioSet([scenarioExecutable, browserScenarioExecutable])
     .buildScript();
   expect(script).toMatchValidationFile();
 });
 
 test("short default with two scenarios", () => {
   const script = new ScenarioSetBuilder()
-    .shortDefaultScript([scenarioExecutable, browserScenarioExecutable])
+    .shortDefaultScenarioSet([scenarioExecutable, browserScenarioExecutable])
     .buildScript();
   expect(script).toMatchValidationFile();
 });

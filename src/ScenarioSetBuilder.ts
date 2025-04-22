@@ -17,14 +17,14 @@ export class ScenarioSetBuilder {
     return this;
   }
 
-  defaultScript(scenarios: ScenarioExecutable[]): this {
+  defaultScenarioSet(scenarios: ScenarioExecutable[]): this {
     for (const scenario of scenarios) {
       this.addDefaultScenario(scenario);
     }
     return this;
   }
 
-  shortDefaultScript(scenarios: ScenarioExecutable[]): this {
+  shortDefaultScenarioSet(scenarios: ScenarioExecutable[]): this {
     for (const scenario of scenarios) {
       this.addShortScenario(scenario);
     }
