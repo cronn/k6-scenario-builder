@@ -1,6 +1,7 @@
 import { expect, test } from "vitest";
 import { ScenarioBuilderProvider } from "../../src";
 import { ScenarioSetBuilder } from "../../src";
+import { ConstantVUsScenarioBuilder } from "../../src";
 import {
   browserScenarioExecutable,
   scenarioExecutable,
@@ -8,14 +9,7 @@ import {
 } from "./fixtures";
 
 test("default scenario", () => {
-  const script = new ScenarioSetBuilder()
-    .addScenario(
-      ScenarioBuilderProvider.constantScenario(
-        scenarioExecutable,
-      ).buildScenario(),
-    )
-    .buildScenarioSet();
-  expect(script).toMatchValidationFile();
+  validateDefaultScenario();
 });
 
 test("scenario with browser", () => {
@@ -64,3 +58,24 @@ test("wrong format", () => {
       .buildScenarioSet(),
   ).toThrowError(timeFormatErrorMessage);
 });
+
+test("modify default scenario", () => {
+  ConstantVUsScenarioBuilder.setDefaultScenario({
+    exec: undefined,
+    executor: "constant-vus",
+    vus: 2,
+    duration: "60s",
+  });
+  validateDefaultScenario();
+});
+
+function validateDefaultScenario(): void {
+  const script = new ScenarioSetBuilder()
+    .addScenario(
+      ScenarioBuilderProvider.constantScenario(
+        scenarioExecutable,
+      ).buildScenario(),
+    )
+    .buildScenarioSet();
+  expect(script).toMatchValidationFile();
+}

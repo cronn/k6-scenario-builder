@@ -1,5 +1,8 @@
 import type { Scenario } from "k6/options";
-import { ScenarioBuilderProvider } from "./ScenarioBuilderProvider";
+import {
+  type ScenarioBuilder,
+  ScenarioBuilderProvider,
+} from "./ScenarioBuilderProvider";
 import type { ScenarioExecutable } from "./ScenarioExecutable";
 
 export class ScenarioSetBuilder {
@@ -17,9 +20,12 @@ export class ScenarioSetBuilder {
     return this;
   }
 
-  defaultScenarioSet(scenarios: ScenarioExecutable[]): this {
+  defaultScenarioSet(
+    scenarios: ScenarioExecutable[],
+    scenarioBuilder: ScenarioBuilder = ScenarioBuilderProvider.constantScenario,
+  ): this {
     for (const scenario of scenarios) {
-      this.addDefaultScenario(scenario);
+      this.addDefaultScenario(scenario, scenarioBuilder);
     }
     return this;
   }
@@ -31,10 +37,11 @@ export class ScenarioSetBuilder {
     return this;
   }
 
-  addDefaultScenario(scenario: ScenarioExecutable): this {
-    return this.addScenario(
-      ScenarioBuilderProvider.constantScenario(scenario).buildScenario(),
-    );
+  addDefaultScenario(
+    scenario: ScenarioExecutable,
+    scenarioBuilder: ScenarioBuilder = ScenarioBuilderProvider.constantScenario,
+  ): this {
+    return this.addScenario(scenarioBuilder(scenario).buildScenario());
   }
 
   addShortScenario(scenario: ScenarioExecutable): this {

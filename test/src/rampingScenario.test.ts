@@ -1,6 +1,7 @@
 import { expect, test } from "vitest";
 import { ScenarioBuilderProvider } from "../../src";
 import { ScenarioSetBuilder } from "../../src";
+import { RampingVUsScenarioBuilder } from "../../src";
 import {
   browserScenarioExecutable,
   scenarioExecutable,
@@ -8,15 +9,7 @@ import {
 } from "./fixtures";
 
 test("default scenario", () => {
-  const script = new ScenarioSetBuilder()
-    .addScenario(
-      ScenarioBuilderProvider.rampingScenario(
-        scenarioExecutable,
-        1,
-      ).buildScenario(),
-    )
-    .buildScenarioSet();
-  expect(script).toMatchValidationFile();
+  validateDefaultScenario();
 });
 
 test("scenario with browser", () => {
@@ -56,3 +49,27 @@ test("wrong format", () => {
     ),
   ).toThrowError(timeFormatErrorMessage);
 });
+
+test("modify default scenario", () => {
+  RampingVUsScenarioBuilder.setDefaultScenario({
+    exec: undefined,
+    executor: "ramping-vus",
+    startVUs: 2,
+    stages: [],
+    gracefulRampDown: "10s",
+    gracefulStop: "10s",
+  });
+  RampingVUsScenarioBuilder.setDefaultStage({ duration: "40s", target: 2 });
+  validateDefaultScenario();
+});
+
+function validateDefaultScenario(): void {
+  const script = new ScenarioSetBuilder()
+    .addScenario(
+      ScenarioBuilderProvider.rampingScenario(
+        scenarioExecutable,
+      ).buildScenario(),
+    )
+    .buildScenarioSet();
+  expect(script).toMatchValidationFile();
+}

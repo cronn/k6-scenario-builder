@@ -9,9 +9,12 @@ export const ScenarioBuilderProvider = {
   constantArrivalRateScenario,
 };
 
+export type ScenarioBuilder =
+  (typeof ScenarioBuilderProvider)[keyof typeof ScenarioBuilderProvider];
+
 function rampingScenario(
   scenarioInfo: ScenarioExecutable,
-  startVus: number,
+  startVus?: number,
   startDelay?: string,
 ): RampingVUsScenarioBuilder {
   return new RampingVUsScenarioBuilder(scenarioInfo, startVus, startDelay);

@@ -1,5 +1,4 @@
 import { expect, test } from "vitest";
-
 import { ScenarioBuilderProvider } from "../../src";
 import { ScenarioSetBuilder } from "../../src";
 import { browserScenarioExecutable, scenarioExecutable } from "./fixtures";
@@ -30,6 +29,33 @@ test("short default with two scenarios", () => {
   expect(script).toMatchValidationFile();
 });
 
+test("default script ramping", () => {
+  const script = new ScenarioSetBuilder()
+    .defaultScenarioSet(
+      [scenarioExecutable],
+      ScenarioBuilderProvider.rampingScenario,
+    )
+    .buildScenarioSet();
+  expect(script).toMatchValidationFile();
+});
+
+test("default script constant arrival rate", () => {
+  const script = new ScenarioSetBuilder()
+    .defaultScenarioSet(
+      [scenarioExecutable],
+      ScenarioBuilderProvider.constantArrivalRateScenario,
+    )
+    .buildScenarioSet();
+  expect(script).toMatchValidationFile();
+});
+
+test("add default scenario", () => {
+  const script = new ScenarioSetBuilder()
+    .addDefaultScenario(scenarioExecutable)
+    .buildScenarioSet();
+  expect(script).toMatchValidationFile();
+});
+
 test("each executor type once", () => {
   const script = new ScenarioSetBuilder()
     .addScenario(
@@ -40,7 +66,7 @@ test("each executor type once", () => {
       "constantScenario",
     )
     .addScenario(
-      ScenarioBuilderProvider.rampingScenario(browserScenarioExecutable, 1)
+      ScenarioBuilderProvider.rampingScenario(browserScenarioExecutable)
         .withStage("2m", 2)
         .buildScenario(),
     )

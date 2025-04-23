@@ -1,7 +1,7 @@
 import { expect, test } from "vitest";
-
 import { ScenarioBuilderProvider } from "../../src";
 import { ScenarioSetBuilder } from "../../src";
+import { ConstantArrivalRateBuilder } from "../../src";
 import {
   browserScenarioExecutable,
   scenarioExecutable,
@@ -9,14 +9,7 @@ import {
 } from "./fixtures";
 
 test("default scenario", () => {
-  const script = new ScenarioSetBuilder()
-    .addScenario(
-      ScenarioBuilderProvider.constantArrivalRateScenario(
-        scenarioExecutable,
-      ).buildScenario(),
-    )
-    .buildScenarioSet();
-  expect(script).toMatchValidationFile();
+  validateDefaultScenario();
 });
 
 test("scenario with browser", () => {
@@ -81,3 +74,27 @@ test("wrong time format", () => {
       .buildScenarioSet(),
   ).toThrowError(timeFormatErrorMessage);
 });
+
+test("modify default scenario", () => {
+  ConstantArrivalRateBuilder.setDefaultScenario({
+    exec: undefined,
+    executor: "constant-arrival-rate",
+    rate: 1,
+    timeUnit: "60s",
+    duration: "60s",
+    preAllocatedVUs: 1,
+    gracefulStop: "10s",
+  });
+  validateDefaultScenario();
+});
+
+function validateDefaultScenario(): void {
+  const script = new ScenarioSetBuilder()
+    .addScenario(
+      ScenarioBuilderProvider.constantArrivalRateScenario(
+        scenarioExecutable,
+      ).buildScenario(),
+    )
+    .buildScenarioSet();
+  expect(script).toMatchValidationFile();
+}

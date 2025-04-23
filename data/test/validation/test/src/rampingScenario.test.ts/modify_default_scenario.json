@@ -1,0 +1,15 @@
+{
+  "testScenario": {
+    "exec": "testScenario",
+    "executor": "ramping-vus",
+    "startVUs": 2,
+    "stages": [
+      {
+        "duration": "40s",
+        "target": 2
+      }
+    ],
+    "gracefulRampDown": "10s",
+    "gracefulStop": "10s"
+  }
+}

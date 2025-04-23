@@ -1,0 +1,8 @@
+{
+  "testScenario": {
+    "exec": "testScenario",
+    "executor": "constant-vus",
+    "vus": 2,
+    "duration": "60s"
+  }
+}

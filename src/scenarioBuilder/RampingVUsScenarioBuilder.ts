@@ -2,29 +2,37 @@ import type { RampingVUsScenario, Stage } from "k6/options";
 import type { ScenarioExecutable } from "../ScenarioExecutable";
 import { AbstractScenarioBuilder } from "./AbstractScenarioBuilder";
 
-const DEFAULT_SCENARIO: RampingVUsScenario = {
-  exec: undefined,
-  executor: "ramping-vus",
-  startVUs: undefined,
-  stages: [],
-  gracefulRampDown: "300s",
-  gracefulStop: "300s",
-};
-
-const DEFAULT_STAGE: Stage = {
-  duration: "30s",
-  target: 1,
-};
-
 export class RampingVUsScenarioBuilder extends AbstractScenarioBuilder<RampingVUsScenario> {
+  private static DEFAULT_SCENARIO: RampingVUsScenario = {
+    exec: undefined,
+    executor: "ramping-vus",
+    startVUs: 1,
+    stages: [],
+    gracefulRampDown: "300s",
+    gracefulStop: "300s",
+  };
+
+  private static DEFAULT_STAGE: Stage = {
+    duration: "30s",
+    target: 1,
+  };
+
+  static setDefaultScenario(newDefault: RampingVUsScenario): void {
+    RampingVUsScenarioBuilder.DEFAULT_SCENARIO = newDefault;
+  }
+
+  static setDefaultStage(defaultStage: Stage): void {
+    RampingVUsScenarioBuilder.DEFAULT_STAGE = defaultStage;
+  }
+
   protected readonly currentScenario: RampingVUsScenario = {
-    ...DEFAULT_SCENARIO,
-    stages: [...DEFAULT_SCENARIO.stages],
+    ...RampingVUsScenarioBuilder.DEFAULT_SCENARIO,
+    stages: [...RampingVUsScenarioBuilder.DEFAULT_SCENARIO.stages],
   };
 
   constructor(
     scenarioExecutable: ScenarioExecutable,
-    startVus: number,
+    startVus?: number,
     startDelay?: string,
   ) {
     super(scenarioExecutable);
@@ -32,7 +40,9 @@ export class RampingVUsScenarioBuilder extends AbstractScenarioBuilder<RampingVU
       typeof scenarioExecutable.exec === "string"
         ? scenarioExecutable.exec
         : scenarioExecutable.exec.name;
-    this.currentScenario.startVUs = startVus;
+    if (startVus !== undefined) {
+      this.currentScenario.startVUs = startVus;
+    }
     this.addStartDelay(startDelay);
     this.addBrowserIfNeeded();
   }
@@ -52,7 +62,10 @@ export class RampingVUsScenarioBuilder extends AbstractScenarioBuilder<RampingVU
 
   buildScenario(): RampingVUsScenario {
     if (this.currentScenario.stages.length === 0) {
-      this.withStage(DEFAULT_STAGE.duration, DEFAULT_STAGE.target);
+      this.withStage(
+        RampingVUsScenarioBuilder.DEFAULT_STAGE.duration,
+        RampingVUsScenarioBuilder.DEFAULT_STAGE.target,
+      );
     }
     return this.currentScenario;
   }
