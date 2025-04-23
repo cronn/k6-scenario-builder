@@ -14,7 +14,7 @@ test("default scenario", () => {
         scenarioExecutable,
       ).buildScenario(),
     )
-    .buildScript();
+    .buildScenarioSet();
   expect(script).toMatchValidationFile();
 });
 
@@ -25,7 +25,7 @@ test("scenario with browser", () => {
         browserScenarioExecutable,
       ).buildScenario(),
     )
-    .buildScript();
+    .buildScenarioSet();
   expect(script).toMatchValidationFile();
 });
 
@@ -38,7 +38,7 @@ test("configured scenario", () => {
         .addEnvOption({ myOption: "value" })
         .buildScenario(),
     )
-    .buildScript();
+    .buildScenarioSet();
   expect(script).toMatchValidationFile();
 });
 
@@ -49,7 +49,7 @@ test("short default scenario", () => {
         .withShortConstantScenario()
         .buildScenario(),
     )
-    .buildScript();
+    .buildScenarioSet();
   expect(script).toMatchValidationFile();
 });
 
@@ -61,6 +61,6 @@ test("wrong format", () => {
           .withDuration("12Stunden")
           .buildScenario(),
       )
-      .buildScript(),
+      .buildScenarioSet(),
   ).toThrowError(timeFormatErrorMessage);
 });

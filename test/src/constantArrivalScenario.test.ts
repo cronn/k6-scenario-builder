@@ -15,7 +15,7 @@ test("default scenario", () => {
         scenarioExecutable,
       ).buildScenario(),
     )
-    .buildScript();
+    .buildScenarioSet();
   expect(script).toMatchValidationFile();
 });
 
@@ -26,7 +26,7 @@ test("scenario with browser", () => {
         browserScenarioExecutable,
       ).buildScenario(),
     )
-    .buildScript();
+    .buildScenarioSet();
   expect(script).toMatchValidationFile();
 });
 
@@ -45,7 +45,7 @@ test("configured scenario", () => {
         .addEnvOption({ anotherOption: "anotherValue" })
         .buildScenario(),
     )
-    .buildScript();
+    .buildScenarioSet();
   expect(script).toMatchValidationFile();
 });
 
@@ -58,7 +58,7 @@ test("wrong time format", () => {
           "5min",
         ).buildScenario(),
       )
-      .buildScript(),
+      .buildScenarioSet(),
   ).toThrowError(timeFormatErrorMessage);
   expect(() =>
     new ScenarioSetBuilder()
@@ -67,7 +67,7 @@ test("wrong time format", () => {
           .withTimeUnit("3min")
           .buildScenario(),
       )
-      .buildScript(),
+      .buildScenarioSet(),
   ).toThrowError(timeFormatErrorMessage);
   expect(() =>
     new ScenarioSetBuilder()
@@ -78,6 +78,6 @@ test("wrong time format", () => {
           .withDuration("3hours")
           .buildScenario(),
       )
-      .buildScript(),
+      .buildScenarioSet(),
   ).toThrowError(timeFormatErrorMessage);
 });

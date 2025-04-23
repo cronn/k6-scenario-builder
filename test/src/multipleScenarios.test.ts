@@ -5,26 +5,28 @@ import { ScenarioSetBuilder } from "../../src";
 import { browserScenarioExecutable, scenarioExecutable } from "./fixtures";
 
 test("empty script", () => {
-  const script = new ScenarioSetBuilder().buildScript();
+  const script = new ScenarioSetBuilder().buildScenarioSet();
   expect(script).toMatchValidationFile();
 });
 
 test("default empty script", () => {
-  const script = new ScenarioSetBuilder().defaultScenarioSet([]).buildScript();
+  const script = new ScenarioSetBuilder()
+    .defaultScenarioSet([])
+    .buildScenarioSet();
   expect(script).toMatchValidationFile();
 });
 
 test("default script browser and no browser", () => {
   const script = new ScenarioSetBuilder()
     .defaultScenarioSet([scenarioExecutable, browserScenarioExecutable])
-    .buildScript();
+    .buildScenarioSet();
   expect(script).toMatchValidationFile();
 });
 
 test("short default with two scenarios", () => {
   const script = new ScenarioSetBuilder()
     .shortDefaultScenarioSet([scenarioExecutable, browserScenarioExecutable])
-    .buildScript();
+    .buildScenarioSet();
   expect(script).toMatchValidationFile();
 });
 
@@ -51,6 +53,6 @@ test("each executor type once", () => {
         .buildScenario(),
       "constantArrivalScenario",
     )
-    .buildScript();
+    .buildScenarioSet();
   expect(script).toMatchValidationFile();
 });

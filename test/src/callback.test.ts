@@ -13,7 +13,7 @@ test("callback function", async () => {
   new ScenarioSetBuilder()
     .withCallback(callback)
     .defaultScenarioSet([scenarioExecutable])
-    .buildScript();
+    .buildScenarioSet();
   expect(executor).toEqual("constant-vus");
 });
 
@@ -42,7 +42,7 @@ test("renew callback function", async () => {
         1,
       ).buildScenario(),
     )
-    .buildScript();
+    .buildScenarioSet();
   expect(message1).toEqual(firstCallBackMessage);
   expect(message2).toEqual(secondCallBackMessage);
 });

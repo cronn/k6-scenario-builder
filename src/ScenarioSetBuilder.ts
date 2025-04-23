@@ -50,7 +50,7 @@ export class ScenarioSetBuilder {
     return this;
   }
 
-  buildScript(): Record<string, Scenario> {
+  buildScenarioSet(): Record<string, Scenario> {
     return this.currentScript;
   }
 }

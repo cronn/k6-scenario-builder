@@ -9,7 +9,7 @@ test("manual scenario", () => {
       vus: 1,
       duration: "1m",
     })
-    .buildScript();
+    .buildScenarioSet();
   expect(script).toMatchValidationFile();
 });
 

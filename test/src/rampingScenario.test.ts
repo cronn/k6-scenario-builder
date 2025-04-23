@@ -15,7 +15,7 @@ test("default scenario", () => {
         1,
       ).buildScenario(),
     )
-    .buildScript();
+    .buildScenarioSet();
   expect(script).toMatchValidationFile();
 });
 
@@ -27,7 +27,7 @@ test("scenario with browser", () => {
         1,
       ).buildScenario(),
     )
-    .buildScript();
+    .buildScenarioSet();
   expect(script).toMatchValidationFile();
 });
 
@@ -43,7 +43,7 @@ test("configured scenario", () => {
         ])
         .buildScenario(),
     )
-    .buildScript();
+    .buildScenarioSet();
   expect(script).toMatchValidationFile();
 });
 
