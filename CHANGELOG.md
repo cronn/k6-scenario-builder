@@ -1,7 +1,9 @@
 # @cronn/k6-scenario-builder
 
-## 0.1.0
+## 1.0.0
 
-### Minor Changes
-
-- 6dd1b10: Initial release
+- <commit>: Initial release
+- Scenario Builder for the k6 executor types:
+  - constant-vus
+  - ramping-vus
+  - constant-arrival-rate
