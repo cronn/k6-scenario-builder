@@ -58,6 +58,9 @@ export class ScenarioSetBuilder {
   }
 
   buildScenarioSet(): Record<string, Scenario> {
+    if (Object.keys(this.currentScript).length === 0) {
+      throw new Error("Define at least one scenario for a valid scenario set!");
+    }
     return this.currentScript;
   }
 }

@@ -1,18 +1,22 @@
 import { expect, test } from "vitest";
 import { ScenarioBuilderProvider } from "../../src";
 import { ScenarioSetBuilder } from "../../src";
-import { browserScenarioExecutable, scenarioExecutable } from "./fixtures";
+import {
+  browserScenarioExecutable,
+  emptyScriptErrorMessage,
+  scenarioExecutable,
+} from "./fixtures";
 
 test("empty script", () => {
-  const script = new ScenarioSetBuilder().buildScenarioSet();
-  expect(script).toMatchValidationFile();
+  expect(() => {
+    new ScenarioSetBuilder().buildScenarioSet();
+  }).toThrowError(emptyScriptErrorMessage);
 });
 
 test("default empty script", () => {
-  const script = new ScenarioSetBuilder()
-    .defaultScenarioSet([])
-    .buildScenarioSet();
-  expect(script).toMatchValidationFile();
+  expect(() => {
+    new ScenarioSetBuilder().defaultScenarioSet([]).buildScenarioSet();
+  }).toThrowError(emptyScriptErrorMessage);
 });
 
 test("default script browser and no browser", () => {
