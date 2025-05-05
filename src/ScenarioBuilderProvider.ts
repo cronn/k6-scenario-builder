@@ -1,4 +1,6 @@
+import type { BaseScenario } from "k6/options";
 import type { ScenarioExecutable } from "./ScenarioExecutable";
+import type { AbstractScenarioBuilder } from "./scenarioBuilder/AbstractScenarioBuilder";
 import { ConstantArrivalRateBuilder } from "./scenarioBuilder/ConstantArrivalRateBuilder";
 import { ConstantVUsScenarioBuilder } from "./scenarioBuilder/ConstantVUsScenarioBuilder";
 import { RampingVUsScenarioBuilder } from "./scenarioBuilder/RampingVUsScenarioBuilder";
@@ -9,15 +11,17 @@ export const ScenarioBuilderProvider = {
   constantArrivalRateScenario,
 };
 
-export type ScenarioBuilder =
-  (typeof ScenarioBuilderProvider)[keyof typeof ScenarioBuilderProvider];
+export type BuilderConstructor<T extends BaseScenario> = new (
+  scenarioInfo: ScenarioExecutable,
+  startDelay?: string,
+) => AbstractScenarioBuilder<T>;
 
 function rampingScenario(
   scenarioInfo: ScenarioExecutable,
   startVus?: number,
   startDelay?: string,
 ): RampingVUsScenarioBuilder {
-  return new RampingVUsScenarioBuilder(scenarioInfo, startVus, startDelay);
+  return new RampingVUsScenarioBuilder(scenarioInfo, startDelay, startVus);
 }
 
 function constantScenario(

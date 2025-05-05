@@ -1,5 +1,9 @@
 import { expect, test } from "vitest";
-import { ScenarioBuilderProvider } from "../../src";
+import {
+  ConstantArrivalRateBuilder,
+  RampingVUsScenarioBuilder,
+  ScenarioBuilderProvider,
+} from "../../src";
 import { ScenarioSetBuilder } from "../../src";
 import {
   browserScenarioExecutable,
@@ -35,20 +39,14 @@ test("short default with two scenarios", () => {
 
 test("default script ramping", () => {
   const script = new ScenarioSetBuilder()
-    .defaultScenarioSet(
-      [scenarioExecutable],
-      ScenarioBuilderProvider.rampingScenario,
-    )
+    .defaultScenarioSet([scenarioExecutable], RampingVUsScenarioBuilder)
     .buildScenarioSet();
   expect(script).toMatchValidationFile();
 });
 
 test("default script constant arrival rate", () => {
   const script = new ScenarioSetBuilder()
-    .defaultScenarioSet(
-      [scenarioExecutable],
-      ScenarioBuilderProvider.constantArrivalRateScenario,
-    )
+    .defaultScenarioSet([scenarioExecutable], ConstantArrivalRateBuilder)
     .buildScenarioSet();
   expect(script).toMatchValidationFile();
 });

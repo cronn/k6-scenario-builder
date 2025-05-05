@@ -1,9 +1,10 @@
-import type { Scenario } from "k6/options";
+import type { BaseScenario, Scenario } from "k6/options";
 import {
-  type ScenarioBuilder,
+  type BuilderConstructor,
   ScenarioBuilderProvider,
 } from "./ScenarioBuilderProvider";
 import type { ScenarioExecutable } from "./ScenarioExecutable";
+import { ConstantVUsScenarioBuilder } from "./scenarioBuilder/ConstantVUsScenarioBuilder";
 
 export class ScenarioSetBuilder {
   private readonly currentScript: Record<string, Scenario> = {};
@@ -20,12 +21,12 @@ export class ScenarioSetBuilder {
     return this;
   }
 
-  defaultScenarioSet(
+  defaultScenarioSet<T extends BaseScenario>(
     scenarios: ScenarioExecutable[],
-    scenarioBuilder: ScenarioBuilder = ScenarioBuilderProvider.constantScenario,
+    ScenarioBuilder?: BuilderConstructor<T>,
   ): this {
     for (const scenario of scenarios) {
-      this.addDefaultScenario(scenario, scenarioBuilder);
+      this.addDefaultScenario(scenario, ScenarioBuilder);
     }
     return this;
   }
@@ -37,11 +38,14 @@ export class ScenarioSetBuilder {
     return this;
   }
 
-  addDefaultScenario(
+  addDefaultScenario<T extends BaseScenario>(
     scenario: ScenarioExecutable,
-    scenarioBuilder: ScenarioBuilder = ScenarioBuilderProvider.constantScenario,
+    ScenarioBuilder?: BuilderConstructor<T>,
   ): this {
-    return this.addScenario(scenarioBuilder(scenario).buildScenario());
+    const scenarioBuilder = ScenarioBuilder
+      ? new ScenarioBuilder(scenario)
+      : new ConstantVUsScenarioBuilder(scenario);
+    return this.addScenario(scenarioBuilder.buildScenario());
   }
 
   addShortScenario(scenario: ScenarioExecutable): this {
