@@ -21,10 +21,7 @@ export class ConstantVUsScenarioBuilder extends AbstractScenarioBuilder<Constant
 
   constructor(scenarioExecutable: ScenarioExecutable, startDelay?: string) {
     super(scenarioExecutable);
-    this.currentScenario.exec =
-      typeof scenarioExecutable.exec === "string"
-        ? scenarioExecutable.exec
-        : scenarioExecutable.exec.name;
+    this.currentScenario.exec = scenarioExecutable.exec;
     this.addStartDelay(startDelay);
     this.addBrowserIfNeeded();
   }
