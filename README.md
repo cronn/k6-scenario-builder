@@ -8,9 +8,9 @@ If your k6 setup grows bigger, and you want to run multiple scenarios the scenar
 In particular, making changes to adjust scenarios for test runs is tedious and can easily lead to errors in the configuration, costing time.
 This library tries to make the configuration and customisation of k6 scenarios easier and less error-prone.
 
-## Version 1.0.0
+## Currently supported executor types
 
-In the current major version are scenario builders for three k6 executor types implemented.
+In the current version are scenario builders for three k6 executor types implemented.
 - constant-vus
 - ramping-vus
 - constant-arrival-rate
@@ -89,4 +89,4 @@ Each ScenarioBuilder has a default configuration for mandatory values which will
 These default values can be modified by using `setDefaultScenario` for the desired builder. Be aware that when adding stages to the default scenario 
 for the `RampingVUsScenarioBuilder` they will be used in the customized scenarios as well. `withStage` will only add stages but not override the default ones.
 Thus, recommended is to use `setDefaultStages` to modify default stages and keep the stages in the default scenario an empty list. 
-Additionally `ScenarioSetBuilder` has functions for default sets which accept `ScenarioExecutables` that should be executed with default values.
+Additionally `ScenarioSetBuilder` has functions for default sets which accept `ScenarioExecutables` to be run with default values.
