@@ -51,6 +51,16 @@ test("default script constant arrival rate", () => {
   expect(script).toMatchValidationFile();
 });
 
+test("default script by record", () => {
+  const script = new ScenarioSetBuilder()
+    .defaultScenarioSet({
+      myParticularName: scenarioExecutable,
+      anotherParticularName: browserScenarioExecutable,
+    })
+    .buildScenarioSet();
+  expect(script).toMatchValidationFile();
+});
+
 test("add default scenario", () => {
   const script = new ScenarioSetBuilder()
     .addDefaultScenario(scenarioExecutable)

@@ -1,0 +1,21 @@
+{
+  "myParticularName": {
+    "exec": "testScenario",
+    "executor": "constant-vus",
+    "vus": 1,
+    "duration": "30s",
+    "gracefulStop": "120s"
+  },
+  "anotherParticularName": {
+    "exec": "testBrowserScenario",
+    "executor": "constant-vus",
+    "vus": 1,
+    "duration": "30s",
+    "gracefulStop": "120s",
+    "options": {
+      "browser": {
+        "type": "chromium"
+      }
+    }
+  }
+}

@@ -22,11 +22,17 @@ export class ScenarioSetBuilder {
   }
 
   defaultScenarioSet<T extends BaseScenario>(
-    scenarios: ScenarioExecutable[],
+    scenarios: ScenarioExecutable[] | Record<string, ScenarioExecutable>,
     ScenarioBuilder?: BuilderConstructor<T>,
   ): this {
-    for (const scenario of scenarios) {
-      this.addDefaultScenario(scenario, ScenarioBuilder);
+    if (Array.isArray(scenarios)) {
+      for (const scenario of scenarios) {
+        this.addDefaultScenario(scenario, ScenarioBuilder);
+      }
+    } else {
+      for (const [name, scenario] of Object.entries(scenarios)) {
+        this.addDefaultScenario(scenario, ScenarioBuilder, name);
+      }
     }
     return this;
   }
@@ -41,11 +47,12 @@ export class ScenarioSetBuilder {
   addDefaultScenario<T extends BaseScenario>(
     scenario: ScenarioExecutable,
     ScenarioBuilder?: BuilderConstructor<T>,
+    name?: string,
   ): this {
     const scenarioBuilder = ScenarioBuilder
       ? new ScenarioBuilder(scenario)
       : new ConstantVUsScenarioBuilder(scenario);
-    return this.addScenario(scenarioBuilder.buildScenario());
+    return this.addScenario(scenarioBuilder.buildScenario(), name);
   }
 
   addShortScenario(scenario: ScenarioExecutable): this {
