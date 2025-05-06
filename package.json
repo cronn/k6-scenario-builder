@@ -1,6 +1,6 @@
 {
   "name": "@cronn/k6-scenario-builder",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Create k6 scenarios using a builder",
   "keywords": ["k6"],
   "bugs": {
@@ -47,7 +47,7 @@
     }
   },
   "types": "./dist/index.d.ts",
-  "files": ["README.md", "dist"],
+  "files": ["README.md", "LICENSE", "dist"],
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "@changesets/cli": "2.29.1",
