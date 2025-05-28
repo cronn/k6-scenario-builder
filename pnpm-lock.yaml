@@ -27,8 +27,8 @@ importers:
         specifier: 3.1.4
         version: 3.1.4(vitest@3.1.4(@types/node@22.15.23)(tsx@4.19.2))
       '@vitest/expect':
-        specifier: 3.1.1
-        version: 3.1.1
+        specifier: 3.1.4
+        version: 3.1.4
       tsup:
         specifier: 8.4.0
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.2)(typescript@5.8.3)
@@ -2557,13 +2557,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@vitest/expect@3.1.1':
-    dependencies:
-      '@vitest/spy': 3.1.1
-      '@vitest/utils': 3.1.1
-      chai: 5.2.0
-      tinyrainbow: 2.0.0
-
   '@vitest/expect@3.1.4':
     dependencies:
       '@vitest/spy': 3.1.4
@@ -2578,10 +2571,6 @@ snapshots:
       magic-string: 0.30.17
     optionalDependencies:
       vite: 6.3.5(@types/node@22.15.23)(tsx@4.19.2)
-
-  '@vitest/pretty-format@3.1.1':
-    dependencies:
-      tinyrainbow: 2.0.0
 
   '@vitest/pretty-format@3.1.4':
     dependencies:
