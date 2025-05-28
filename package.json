@@ -52,7 +52,7 @@
     "@biomejs/biome": "1.9.4",
     "@changesets/cli": "2.29.1",
     "@cronn/vitest-file-snapshots": "0.4.0",
-    "@types/k6": "0.57.1",
+    "@types/k6": "1.0.2",
     "@types/node": "22.14.1",
     "@vitest/coverage-istanbul": "3.1.1",
     "@vitest/expect": "3.1.1",
