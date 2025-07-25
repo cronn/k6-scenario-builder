@@ -1,11 +1,9 @@
-import { expect, test } from "vitest";
-
 import type { Scenario } from "k6/options";
-import { ScenarioBuilderProvider } from "../../src";
-import { ScenarioSetBuilder } from "../../src";
+import { expect, test } from "vitest";
+import { ScenarioBuilderProvider, ScenarioSetBuilder } from "../../src";
 import { scenarioExecutable } from "./fixtures";
 
-test("callback function", async () => {
+test("callback function", () => {
   let executor = "";
   const callback = (scenario: Scenario): void => {
     executor = scenario.executor;
@@ -17,15 +15,15 @@ test("callback function", async () => {
   expect(executor).toEqual("constant-vus");
 });
 
-test("renew callback function", async () => {
+test("renew callback function", () => {
   let message1 = "";
   const firstCallBackMessage = "first callback says hi";
   let message2 = "";
   const secondCallBackMessage = "second callback says bye";
-  const firstCallback = (scenario: Scenario): void => {
+  const firstCallback = (): void => {
     message1 = firstCallBackMessage;
   };
-  const secondCallback = (scenario: Scenario): void => {
+  const secondCallback = (): void => {
     message2 = secondCallBackMessage;
   };
   new ScenarioSetBuilder()

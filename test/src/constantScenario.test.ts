@@ -1,7 +1,9 @@
 import { expect, test } from "vitest";
-import { ScenarioBuilderProvider } from "../../src";
-import { ScenarioSetBuilder } from "../../src";
-import { ConstantVUsScenarioBuilder } from "../../src";
+import {
+  ConstantVUsScenarioBuilder,
+  ScenarioBuilderProvider,
+  ScenarioSetBuilder,
+} from "../../src";
 import {
   browserScenarioExecutable,
   scenarioExecutable,

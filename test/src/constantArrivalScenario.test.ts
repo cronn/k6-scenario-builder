@@ -1,7 +1,9 @@
 import { expect, test } from "vitest";
-import { ScenarioBuilderProvider } from "../../src";
-import { ScenarioSetBuilder } from "../../src";
-import { ConstantArrivalRateBuilder } from "../../src";
+import {
+  ConstantArrivalRateBuilder,
+  ScenarioBuilderProvider,
+  ScenarioSetBuilder,
+} from "../../src";
 import {
   browserScenarioExecutable,
   scenarioExecutable,
