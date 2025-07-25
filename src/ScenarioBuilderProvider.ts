@@ -5,6 +5,7 @@ import { ConstantArrivalRateBuilder } from "./scenarioBuilder/ConstantArrivalRat
 import { ConstantVUsScenarioBuilder } from "./scenarioBuilder/ConstantVUsScenarioBuilder";
 import { RampingVUsScenarioBuilder } from "./scenarioBuilder/RampingVUsScenarioBuilder";
 
+// biome-ignore lint/nursery/useExplicitType: type is inferred and acceptable
 export const ScenarioBuilderProvider = {
   rampingScenario,
   constantScenario,

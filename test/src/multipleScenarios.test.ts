@@ -3,8 +3,8 @@ import {
   ConstantArrivalRateBuilder,
   RampingVUsScenarioBuilder,
   ScenarioBuilderProvider,
+  ScenarioSetBuilder,
 } from "../../src";
-import { ScenarioSetBuilder } from "../../src";
 import {
   browserScenarioExecutable,
   emptyScriptErrorMessage,
