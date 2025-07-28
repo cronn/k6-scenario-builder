@@ -1,3 +1,3 @@
-import { registerValidationFileMatcher } from "@cronn/vitest-file-snapshots/matcher";
+import { registerValidationFileMatchers } from "@cronn/vitest-file-snapshots/register";
 
-registerValidationFileMatcher();
+registerValidationFileMatchers();

@@ -10,7 +10,7 @@ test("manual scenario", () => {
       duration: "1m",
     })
     .buildScenarioSet();
-  expect(script).toMatchValidationFile();
+  expect(script).toMatchJsonFile();
 });
 
 test("missing exec function", () => {
