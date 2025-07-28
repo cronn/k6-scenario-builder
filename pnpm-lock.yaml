@@ -15,8 +15,8 @@ importers:
         specifier: 2.29.5
         version: 2.29.5
       '@cronn/vitest-file-snapshots':
-        specifier: 0.4.0
-        version: 0.4.0(vitest@3.2.4(@types/node@22.16.5)(tsx@4.19.2))
+        specifier: 0.9.2
+        version: 0.9.2(vitest@3.2.4(@types/node@22.16.5)(tsx@4.19.2))
       '@types/k6':
         specifier: 1.1.1
         version: 1.1.1
@@ -220,8 +220,12 @@ packages:
   '@changesets/write@0.4.0':
     resolution: {integrity: sha512-CdTLvIOPiCNuH71pyDu3rA+Q0n65cmAbXnwWH84rKGiFumFzkmHNT8KHTMEchcxN+Kl8I54xGUhJ7l3E7X396Q==}
 
-  '@cronn/vitest-file-snapshots@0.4.0':
-    resolution: {integrity: sha512-WGz7v8LDpKhJnA5h6SquXUA3unaXmyZL2uCE558wUaiyhMvLRJwLLC2jIumULh5CgTRocDZGsSyK7rSf77/eyw==}
+  '@cronn/lib-file-snapshots@0.10.0':
+    resolution: {integrity: sha512-5+fLiD8zawt7aAol7NeBR8jLu1DC0wSMLY+SovbUPD8CB0K3X8+Qzn4mY2FuHVNOrPSqrNeRU+baJgCOrAABWQ==}
+    engines: {node: '>=22', pnpm: '>=10'}
+
+  '@cronn/vitest-file-snapshots@0.9.2':
+    resolution: {integrity: sha512-aghoXWaQ2w/Alm0XT9UZ0xafDvEL8OFvXkXrPrq3TNoIaFkpTLr3rVW+OT4R8ToCDKh2NK85g70wyeh7tSOU9Q==}
     engines: {node: '>=22', pnpm: '>=10'}
     peerDependencies:
       vitest: ^3
@@ -1866,8 +1870,11 @@ snapshots:
       human-id: 4.1.1
       prettier: 2.8.8
 
-  '@cronn/vitest-file-snapshots@0.4.0(vitest@3.2.4(@types/node@22.16.5)(tsx@4.19.2))':
+  '@cronn/lib-file-snapshots@0.10.0': {}
+
+  '@cronn/vitest-file-snapshots@0.9.2(vitest@3.2.4(@types/node@22.16.5)(tsx@4.19.2))':
     dependencies:
+      '@cronn/lib-file-snapshots': 0.10.0
       vitest: 3.2.4(@types/node@22.16.5)(tsx@4.19.2)
 
   '@esbuild/aix-ppc64@0.23.1':

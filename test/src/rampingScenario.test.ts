@@ -23,7 +23,7 @@ test("scenario with browser", () => {
       ).buildScenario(),
     )
     .buildScenarioSet();
-  expect(script).toMatchValidationFile();
+  expect(script).toMatchJsonFile();
 });
 
 test("configured scenario", () => {
@@ -39,7 +39,7 @@ test("configured scenario", () => {
         .buildScenario(),
     )
     .buildScenarioSet();
-  expect(script).toMatchValidationFile();
+  expect(script).toMatchJsonFile();
 });
 
 test("wrong format", () => {
@@ -73,5 +73,5 @@ function validateDefaultScenario(): void {
       ).buildScenario(),
     )
     .buildScenarioSet();
-  expect(script).toMatchValidationFile();
+  expect(script).toMatchJsonFile();
 }

@@ -27,28 +27,28 @@ test("default script browser and no browser", () => {
   const script = new ScenarioSetBuilder()
     .defaultScenarioSet([scenarioExecutable, browserScenarioExecutable])
     .buildScenarioSet();
-  expect(script).toMatchValidationFile();
+  expect(script).toMatchJsonFile();
 });
 
 test("short default with two scenarios", () => {
   const script = new ScenarioSetBuilder()
     .shortDefaultScenarioSet([scenarioExecutable, browserScenarioExecutable])
     .buildScenarioSet();
-  expect(script).toMatchValidationFile();
+  expect(script).toMatchJsonFile();
 });
 
 test("default script ramping", () => {
   const script = new ScenarioSetBuilder()
     .defaultScenarioSet([scenarioExecutable], RampingVUsScenarioBuilder)
     .buildScenarioSet();
-  expect(script).toMatchValidationFile();
+  expect(script).toMatchJsonFile();
 });
 
 test("default script constant arrival rate", () => {
   const script = new ScenarioSetBuilder()
     .defaultScenarioSet([scenarioExecutable], ConstantArrivalRateBuilder)
     .buildScenarioSet();
-  expect(script).toMatchValidationFile();
+  expect(script).toMatchJsonFile();
 });
 
 test("default script by record", () => {
@@ -58,14 +58,14 @@ test("default script by record", () => {
       anotherParticularName: browserScenarioExecutable,
     })
     .buildScenarioSet();
-  expect(script).toMatchValidationFile();
+  expect(script).toMatchJsonFile();
 });
 
 test("add default scenario", () => {
   const script = new ScenarioSetBuilder()
     .addDefaultScenario(scenarioExecutable)
     .buildScenarioSet();
-  expect(script).toMatchValidationFile();
+  expect(script).toMatchJsonFile();
 });
 
 test("each executor type once", () => {
@@ -92,5 +92,5 @@ test("each executor type once", () => {
       "constantArrivalScenario",
     )
     .buildScenarioSet();
-  expect(script).toMatchValidationFile();
+  expect(script).toMatchJsonFile();
 });
