@@ -61,7 +61,7 @@
     "@changesets/cli": "2.29.5",
     "@cronn/vitest-file-snapshots": "0.9.2",
     "@types/k6": "1.1.1",
-    "@types/node": "22.16.5",
+    "@types/node": "24.3.0",
     "@vitest/coverage-istanbul": "3.2.4",
     "@vitest/expect": "3.2.4",
     "tsup": "8.5.0",
