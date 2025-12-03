@@ -1,11 +1,22 @@
 version: 2
-#updates:
-#  - package-ecosystem: "npm"
-#    directory: "/"
-#    schedule:
-#      interval: "monthly"
-#
-#  - package-ecosystem: "github-actions"
-#    directory: "/"
-#    schedule:
-#      interval: "monthly"
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    cooldown:
+      default-days: 7
+    groups:
+      vitest:
+        applies-to: version-updates
+        patterns:
+          - "vitest"
+          - "@vitest*"
+    ignore:
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
